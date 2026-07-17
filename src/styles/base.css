@@ -23,3 +23,10 @@ button:active { transform: translateY(1px); }
 .scroll-area.welcome-scroll-lock { overflow: hidden; touch-action: none; }
 .scroll-area::-webkit-scrollbar { display: none; }
 .screen { min-height: 100%; padding: 22px 20px 26px; }
+
+.icon-pill { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: #e9f0f4; color: #16445f; }
+.dark-card { border-radius: 18px; background: #0c354d; color: white; box-shadow: 0 14px 30px rgba(12,53,77,.17); }
+.dark-insight { display: flex; align-items: flex-start; background: #0d354d; color: #fff; }
+.info-row { padding: 13px; display: flex; border-radius: 14px; background: #e7eef2; color: #16445f; }
+.scroll-hide { scrollbar-width: none; }
+.scroll-hide::-webkit-scrollbar { display: none; }

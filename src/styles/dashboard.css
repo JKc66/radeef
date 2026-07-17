@@ -3,7 +3,7 @@
 .dashboard-heading span { color: #718491; font-size: 11px; }
 .dashboard-heading h1 { margin: 2px 0 0; font-size: 25px; }
 .dashboard-heading .active-badge { padding: 6px 10px; border-radius: 99px; background: #dbf2e9; color: #278363; font-weight: 800; }
-.balance-card { padding: 19px; border-radius: 18px; background: #0c354d; color: white; box-shadow: 0 14px 30px rgba(12,53,77,.17); }
+.balance-card { padding: 19px; }
 .balance-card > small { color: #a9bfcc; }
 .balance-card > strong { display: block; margin: 5px 0 16px; font-size: 34px; direction: ltr; text-align: right; }
 .balance-card > strong span { font-size: 13px; font-weight: 500; }
@@ -20,5 +20,5 @@
 .section-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }.section-title h2 { margin: 0; font-size: 16px; }.section-title span { color: #d95f46; font-size: 11px; }
 .active-investment { padding: 13px; display: grid; grid-template-columns: 42px 1fr auto; align-items: center; gap: 9px; border-radius: 15px; background: white; border: 1px solid #d7e0e5; }
 .active-investment > div { display: grid; gap: 3px; }.active-investment strong { font-size: 13px; }.active-investment small { color: #728491; font-size: 10px; }.active-investment > b { color: #d95f46; direction: ltr; }
-.impact-line { margin: 12px 0 18px; padding: 13px; display: flex; gap: 10px; align-items: center; border-radius: 14px; background: #e7eef2; color: #16445f; }
+.impact-line { margin: 12px 0 18px; gap: 10px; align-items: center; }
 .impact-line p { margin: 0; display: grid; gap: 3px; }.impact-line strong { font-size: 12px; }.impact-line span { color: #667b89; font-size: 10px; }

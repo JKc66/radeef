@@ -18,7 +18,7 @@ export function BrandHeader({ onBack, onClose, compact = false }) {
   </header>;
 }
 
-export function Progress({ current, labels = steps }) {
+function Progress({ current, labels = steps }) {
   return <div className="progress-wrap">
     <div className="progress-label"><span>الخطوة {current} من {labels.length}</span><strong>{labels[current - 1]}</strong></div>
     <div className="progress-track" aria-label={`الخطوة ${current} من ${labels.length}`}>
@@ -33,7 +33,7 @@ export function PrimaryButton({ children, ...props }) {
 
 export function Choice({ selected, icon, title, description, onClick }) {
   return <button type="button" className={`choice-card ${selected ? "selected" : ""}`} aria-pressed={selected} onClick={onClick}>
-    <span className="choice-icon"><Icon icon={icon} /></span>
+    <span className="choice-icon icon-pill"><Icon icon={icon} /></span>
     <span className="choice-copy"><strong>{title}</strong><small>{description}</small></span>
     <span className="radio">{selected && <Icon icon={Check} size={14} weight="bold" />}</span>
   </button>;

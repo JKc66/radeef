@@ -31,7 +31,7 @@ export function GoalStep({ data, update, next }) {
       <div className="field"><label htmlFor="target">المبلغ المستهدف</label><div className="amount-input small"><input id="target" inputMode="numeric" value={data.target} onChange={e => update({ target: e.target.value.replace(/\D/g, "") })} /><span>ريال</span></div></div>
       <div className="field"><label htmlFor="duration">المدة</label><select id="duration" value={data.duration} onChange={e => update({ duration: e.target.value })}><option>12 شهرًا</option><option>18 شهرًا</option><option>24 شهرًا</option></select></div>
     </div>
-    <section className="insight-card"><span className="ai-icon"><Icon icon={Sparkle} /></span><div><strong>قراءة رديف لنمطك</strong><p>بناءً على صرفك السابق، قد تجمع نحو <b>{data.method === "rounding" ? "1,280" : data.amount || "0"} ريال</b> خلال سنة قبل العوائد.</p></div></section>
+    <section className="insight-card dark-insight"><span className="ai-icon icon-pill"><Icon icon={Sparkle} /></span><div><strong>قراءة رديف لنمطك</strong><p>بناءً على صرفك السابق، قد تجمع نحو <b>{data.method === "rounding" ? "1,280" : data.amount || "0"} ريال</b> خلال سنة قبل العوائد.</p></div></section>
     <PrimaryButton onClick={next} disabled={!data.goal || !data.target}>التالي</PrimaryButton>
   </StepShell>;
 }
@@ -47,9 +47,9 @@ export function RiskStep({ data, update, next }) {
 export function MatchStep({ data, update, next }) {
   const matches = opportunities[data.risk];
   return <StepShell title="فرص تناسبك" subtitle={`طابقنا اختيارك (${riskLabels[data.risk]}) مع فرص منشآت محلية.`} current={4}>
-    <section className="match-summary"><Icon icon={Sparkle} /><div><strong>مطابقة رديف الذكية</strong><p>يمكن توزيع استثمارك لاحقًا على أكثر من صك لتقليل التركّز.</p></div></section>
+    <section className="match-summary dark-insight"><Icon icon={Sparkle} /><div><strong>مطابقة رديف الذكية</strong><p>يمكن توزيع استثمارك لاحقًا على أكثر من صك لتقليل التركّز.</p></div></section>
     <div className="opportunity-list">{matches.map(item => <button type="button" key={item.id} className={`opportunity ${data.opportunity === item.id ? "selected" : ""}`} onClick={() => update({ opportunity: item.id })} aria-pressed={data.opportunity === item.id}>
-      <span className="building-icon"><Icon icon={Buildings} /></span>
+      <span className="building-icon icon-pill"><Icon icon={Buildings} /></span>
       <span className="opportunity-copy"><small>{item.sector}</small><strong>{item.name}</strong><span><b>{item.return}</b> عائد سنوي متوقع · {item.term}</span></span>
       <span className="radio">{data.opportunity === item.id && <Icon icon={Check} size={14} />}</span>
     </button>)}</div>

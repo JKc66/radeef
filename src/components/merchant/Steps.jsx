@@ -17,9 +17,9 @@ import { Icon, MerchantStepShell, PrimaryButton } from "../shared";
 export function MerchantIntro({ next }) {
   return <MerchantStepShell title="موّل توسّع منشأتك بالصكوك" subtitle="رديف يحوّل احتياجك التمويلي إلى صكوك يشارك فيها عملاء الإنماء." current={1}>
     <section className="merchant-cycle">
-      <div><span><Icon icon={ClipboardText} /></span><p><strong>قدّم طلبك</strong><small>بيانات المنشأة واحتياج التمويل</small></p></div><i />
-      <div><span><Icon icon={ShieldCheck} /></span><p><strong>مراجعة الإنماء</strong><small>دراسة المنشأة والمخاطر والامتثال</small></p></div><i />
-      <div><span><Icon icon={Coins} /></span><p><strong>طرح الصكوك</strong><small>جمع التمويل وصرفه وفق الشروط</small></p></div>
+      <div><span className="icon-pill"><Icon icon={ClipboardText} /></span><p><strong>قدّم طلبك</strong><small>بيانات المنشأة واحتياج التمويل</small></p></div><i />
+      <div><span className="icon-pill"><Icon icon={ShieldCheck} /></span><p><strong>مراجعة الإنماء</strong><small>دراسة المنشأة والمخاطر والامتثال</small></p></div><i />
+      <div><span className="icon-pill"><Icon icon={Coins} /></span><p><strong>طرح الصكوك</strong><small>جمع التمويل وصرفه وفق الشروط</small></p></div>
     </section>
     <div className="notice merchant-notice"><Icon icon={Info} /><p>تقديم الطلب لا يعني الموافقة النهائية. يحدد البنك الهيكلة والعائد والمدة بعد اكتمال الدراسة.</p></div>
     <PrimaryButton onClick={next}>ابدأ طلب التمويل</PrimaryButton>
@@ -46,12 +46,12 @@ export function MerchantPlan({ data, next }) {
   const amount = Number(data.fundingAmount || 0);
   const sukukCount = Math.max(1, Math.ceil(amount / 100));
   return <MerchantStepShell title="هيكلة أولية للصك" subtitle="تصور مبدئي يساعدك على فهم طريقة تمويل الطلب عبر رديف." current={3}>
-    <section className="merchant-plan-card">
+    <section className="merchant-plan-card dark-card">
       <div className="plan-top"><span><Icon icon={Buildings} /></span><p><small>{data.sector}</small><strong>{data.businessName}</strong></p><em>تصور أولي</em></div>
       <div className="plan-amount"><small>التمويل المطلوب</small><strong>{amount.toLocaleString("en-US")} <span>ريال</span></strong></div>
       <div className="plan-grid"><div><small>عدد أجزاء الصك</small><strong>{sukukCount.toLocaleString("en-US")}</strong></div><div><small>قيمة الجزء</small><strong>100 ريال</strong></div><div><small>المدة المقترحة</small><strong>12 شهرًا</strong></div><div><small>عائد المستثمر المتوقع</small><strong>8–10%</strong></div></div>
     </section>
-    <section className="bank-role"><Icon icon={ShieldCheck} /><p><strong>دور بنك الإنماء</strong><span>يدرس الطلب، يصنّف المخاطر، يعتمد الهيكلة، وينظم طرح الصكوك وتوزيع العوائد.</span></p></section>
+    <section className="bank-role info-row"><Icon icon={ShieldCheck} /><p><strong>دور بنك الإنماء</strong><span>يدرس الطلب، يصنّف المخاطر، يعتمد الهيكلة، وينظم طرح الصكوك وتوزيع العوائد.</span></p></section>
     <small className="example-note">هذه الهيكلة تقديرية للنموذج. الشروط النهائية تعتمد على الدراسة الائتمانية والتنظيمية.</small>
     <PrimaryButton onClick={next}>مراجعة الطلب</PrimaryButton>
   </MerchantStepShell>;
