@@ -1,24 +1,75 @@
-.dashboard { background: #f5f7f9; }
-.dashboard-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-.dashboard-heading span { color: #718491; font-size: 11px; }
-.dashboard-heading h1 { margin: 2px 0 0; font-size: 25px; }
-.dashboard-heading .active-badge { padding: 6px 10px; border-radius: 99px; background: #dbf2e9; color: #278363; font-weight: 800; }
-.balance-card { padding: 19px; }
-.balance-card > small { color: #a9bfcc; }
-.balance-card > strong { display: block; margin: 5px 0 16px; font-size: 34px; direction: ltr; text-align: right; }
-.balance-card > strong span { font-size: 13px; font-weight: 500; }
-.balance-card > div { display: flex; gap: 8px; }
-.balance-card > div span { flex: 1; padding: 9px; display: flex; justify-content: space-between; border-radius: 10px; background: rgba(255,255,255,.07); color: #b9ccd6; font-size: 10px; }
-.balance-card b { color: white; direction: ltr; }.balance-card .positive { color: #66d6aa; }
-.goal-card { margin: 12px 0; padding: 15px; display: grid; grid-template-columns: 1fr auto; gap: 8px; border: 1px solid #d7e0e5; border-radius: 16px; background: white; }
-.goal-card div:first-child { display: grid; gap: 2px; }.goal-card div:first-child span { color: #728491; font-size: 10px; }.goal-card div:first-child strong { font-size: 14px; }
-.goal-card > b { color: #d95f46; direction: ltr; }
-.goal-track { grid-column: 1/-1; height: 7px; border-radius: 9px; background: #e4e9ec; overflow: hidden; }
-.goal-track i { display: block; width: 34%; height: 100%; background: #ef765d; }
-.goal-card > small { grid-column: 1/-1; color: #728491; font-size: 10px; }
-.dashboard-section { margin: 18px 0 12px; }
-.section-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }.section-title h2 { margin: 0; font-size: 16px; }.section-title span { color: #d95f46; font-size: 11px; }
-.active-investment { padding: 13px; display: grid; grid-template-columns: 42px 1fr auto; align-items: center; gap: 9px; border-radius: 15px; background: white; border: 1px solid #d7e0e5; }
-.active-investment > div { display: grid; gap: 3px; }.active-investment strong { font-size: 13px; }.active-investment small { color: #728491; font-size: 10px; }.active-investment > b { color: #d95f46; direction: ltr; }
-.impact-line { margin: 12px 0 18px; gap: 10px; align-items: center; }
-.impact-line p { margin: 0; display: grid; gap: 3px; }.impact-line strong { font-size: 12px; }.impact-line span { color: #667b89; font-size: 10px; }
+/* ── dashboard base ── */
+.dashboard { background: #f5f7f9; padding-bottom: 30px; }
+.dashboard-heading { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+.dashboard-heading > div > span { color: #718491; font-size: 10px; direction: rtl; }
+.dashboard-title { margin: 2px 0 0; font-size: 22px; font-weight: 800; color: #10283a; }
+.active-badge { padding: 5px 11px; border-radius: 99px; background: #dbf2e9; color: #278363; font-weight: 800; font-size: 11px; margin-top: 4px; }
+
+/* ── light card modifier (used on goal/chart/invest/impact cards) ── */
+.light-card { background: #fff; border: 1px solid #d7e0e5; border-radius: 16px; }
+.light-label { color: #718491 !important; }
+.light-strong { color: #10283a !important; }
+.light-desc { color: #718491 !important; }
+.light-section-header { color: #16445f !important; }
+.light-section-header h2 { color: #10283a !important; }
+.light-track { background: #e4e9ec !important; }
+.light-insight { color: #718491 !important; }
+.light-meta > span { color: #718491 !important; }
+.light-meta > strong { color: #10283a !important; }
+.light-sukuk-row { border-top-color: #e5ebee !important; }
+
+/* ── stat tiles (stay dark-card) ── */
+.stat-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.stat-tile { padding: 16px; border-radius: 18px; display: flex; flex-direction: column; gap: 4px; }
+.stat-tile small { color: #a9bfcc; font-size: 10px; }
+.stat-tile > strong { font-size: 22px; font-weight: 800; direction: ltr; text-align: right; }
+.stat-tile > strong span { font-size: 11px; font-weight: 500; }
+.profit-tile { position: relative; }
+.profit-value { color: #66d6aa; }
+.profit-badge { display: inline-flex; align-items: center; gap: 3px; background: rgba(102,214,170,.15); color: #66d6aa; border-radius: 99px; padding: 2px 8px; font-size: 10px; font-weight: 700; width: fit-content; margin-top: 2px; }
+
+/* ── goal card ── */
+.goal-card-v2 { margin-bottom: 12px; padding: 16px; }
+.goal-header-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+.goal-label { display: block; font-size: 10px; color: #a9bfcc; margin-bottom: 3px; }
+.goal-name { font-size: 16px; font-weight: 800; }
+.goal-right { text-align: left; }
+.goal-remaining { font-size: 18px; font-weight: 800; direction: ltr; }
+.goal-remaining small { font-size: 10px; font-weight: 500; }
+.goal-track-v2 { position: relative; height: 6px; border-radius: 99px; background: rgba(255,255,255,.12); margin-bottom: 12px; }
+.goal-fill-v2 { position: absolute; inset: 0; border-radius: 99px; background: linear-gradient(90deg, #ef765d, #f5a28a); }
+.goal-dot { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 13px; height: 13px; border-radius: 50%; background: #ef765d; border: 2px solid white; box-shadow: 0 2px 6px rgba(239,118,93,.5); }
+.goal-insight { margin: 0; font-size: 10.5px; color: #92b3c4; line-height: 1.6; direction: rtl; }
+
+/* ── growth chart card ── */
+.chart-card { margin-bottom: 12px; padding: 16px; }
+.chart-card-header { display: flex; align-items: center; gap: 7px; margin-bottom: 16px; color: #16445f; }
+.chart-card-header h2 { margin: 0; font-size: 14px; font-weight: 700; color: #10283a; }
+.growth-chart-wrap { width: 100%; }
+.growth-svg { width: 100%; height: 100px; display: block; }
+.chart-x-labels { display: flex; justify-content: space-between; margin-top: 8px; direction: rtl; }
+.chart-x-labels span { font-size: 9px; color: #9fb5c2; }
+
+/* ── auto invest card ── */
+.auto-invest-card { margin-bottom: 12px; padding: 16px; }
+.auto-invest-header { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; color: #16445f; }
+.auto-invest-header h2 { margin: 0; font-size: 14px; font-weight: 700; color: #10283a; }
+.auto-invest-desc { margin: 0 0 14px; font-size: 11px; color: #718491; line-height: 1.7; direction: rtl; }
+.invest-meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.invest-meta { display: grid; gap: 4px; }
+.invest-meta > span { font-size: 10px; color: #718491; }
+.invest-meta > strong { font-size: 16px; font-weight: 800; color: #10283a; }
+.sukuk-row { padding-top: 13px; border-top: 1px solid #e5ebee; display: grid; gap: 4px; }
+.sukuk-label { font-size: 10px; color: #718491; }
+.sukuk-name { font-size: 15px; font-weight: 800; color: #10283a; }
+
+/* ── local impact card ── */
+.impact-card-v2 { margin-bottom: 12px; padding: 16px; }
+.impact-header { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; color: #16445f; }
+.impact-header h2 { margin: 0; font-size: 14px; font-weight: 700; color: #10283a; }
+.impact-desc { margin: 0 0 14px; font-size: 11px; color: #718491; line-height: 1.7; direction: rtl; }
+.impact-meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+
+/* ── stat tiles ── */
+

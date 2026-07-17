@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Robot } from "@phosphor-icons/react";
+import { RobotIcon } from "@phosphor-icons/react";
 import { flowOrder, merchantFlowOrder } from "./data";
 import { BrandHeader, Icon } from "./components/shared";
 import { Assistant } from "./components/Assistant";
@@ -28,7 +28,7 @@ export function App() {
     if (screen === "match") return <MatchStep data={data} update={update} next={next} />;
     if (screen === "review") return <ReviewStep data={{ ...data, updateAccepted: value => update({ accepted: value }) }} next={() => setScreen("success")} />;
     if (screen === "success") return <Success onDashboard={() => setScreen("dashboard")} />;
-    if (screen === "dashboard") return <Dashboard data={data} onRestart={() => setScreen("method")} />;
+    if (screen === "dashboard") return <Dashboard data={data} onRestart={() => setScreen("method")} onAssistantOpen={() => setAssistantOpen(true)} />;
     if (screen === "merchant-intro") return <MerchantIntro next={() => setScreen("merchant-details")} />;
     if (screen === "merchant-details") return <MerchantDetails data={merchantData} update={updateMerchant} next={() => setScreen("merchant-plan")} />;
     if (screen === "merchant-plan") return <MerchantPlan data={merchantData} next={() => setScreen("merchant-review")} />;
@@ -42,7 +42,7 @@ export function App() {
   return <div className="canvas" dir="rtl"><div className="mobile-prototype">
     {showHeader && <BrandHeader compact onBack={screen === "dashboard" ? () => setScreen("welcome") : goBack} onClose={() => setScreen("welcome")} />}
     <div className={`scroll-area ${showHeader ? "with-header" : ""} ${screen === "welcome" ? "welcome-scroll-lock" : ""}`}>{renderScreen()}</div>
-    {showAssistantLauncher && !assistantOpen && <button type="button" className={`assistant-launcher ${screen === "welcome" ? "home" : ""}`} onClick={() => setAssistantOpen(true)} aria-label="فتح مساعد رديف"><Icon icon={Robot} size={21} weight="fill" /><span>مساعد رديف</span></button>}
+    {showAssistantLauncher && !assistantOpen && <button type="button" className={`assistant-launcher ${screen === "welcome" ? "home" : ""}`} onClick={() => setAssistantOpen(true)} aria-label="فتح مساعد رديف"><Icon icon={RobotIcon} size={21} weight="fill" /><span>مساعد رديف</span></button>}
     {assistantOpen && <Assistant context={assistantContext} onClose={() => setAssistantOpen(false)} />}
   </div></div>;
 }

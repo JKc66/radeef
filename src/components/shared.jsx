@@ -1,7 +1,7 @@
 import {
-  ArrowRight,
-  Check,
-  X,
+  ArrowRightIcon,
+  CheckIcon,
+  XIcon,
 } from "@phosphor-icons/react";
 import logo from "../assets/radeef-logo.webp";
 import { steps, merchantSteps } from "../data";
@@ -12,9 +12,9 @@ export function Icon({ icon: Component, size = 22, ...props }) {
 
 export function BrandHeader({ onBack, onClose, compact = false }) {
   return <header className={`brand-header ${compact ? "compact" : ""}`}>
-    <button type="button" className="icon-button" onClick={onBack} aria-label="العودة"><Icon icon={ArrowRight} /></button>
+    <button type="button" className="icon-button" onClick={onBack} aria-label="العودة"><Icon icon={ArrowRightIcon} /></button>
     <img src={logo} alt="رديف" className="brand-logo" />
-    <button type="button" className="icon-button" onClick={onClose} aria-label="إغلاق"><Icon icon={X} /></button>
+    <button type="button" className="icon-button" onClick={onClose} aria-label="إغلاق"><Icon icon={XIcon} /></button>
   </header>;
 }
 
@@ -35,7 +35,7 @@ export function Choice({ selected, icon, title, description, onClick }) {
   return <button type="button" className={`choice-card ${selected ? "selected" : ""}`} aria-pressed={selected} onClick={onClick}>
     <span className="choice-icon icon-pill"><Icon icon={icon} /></span>
     <span className="choice-copy"><strong>{title}</strong><small>{description}</small></span>
-    <span className="radio">{selected && <Icon icon={Check} size={14} weight="bold" />}</span>
+    <span className="radio">{selected && <Icon icon={CheckIcon} size={14} weight="bold" />}</span>
   </button>;
 }
 
