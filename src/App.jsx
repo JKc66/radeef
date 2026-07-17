@@ -128,10 +128,13 @@ function Assistant({ context, onClose }) {
   </section>;
 }
 
-function Welcome({ onInvestorStart, onMerchantStart, onWalletOpen }) {
+function Welcome({ onInvestorStart, onMerchantStart, onWalletOpen, onAssistantOpen }) {
   return <main className="welcome screen">
     <div className="welcome-mark">
-      <img src={logo} alt="رديف" />
+      <button type="button" className="assistant-header-launcher" onClick={onAssistantOpen} aria-label="فتح مساعد رديف">
+        <Icon icon={Robot} size={18} weight="fill" />
+        <span>مساعد رديف</span>
+      </button>
       <button type="button" className="wallet-entry" onClick={onWalletOpen} aria-label="فتح محفظتي">
         <Icon icon={Wallet} size={18} />
         <span>محفظتي</span>
@@ -141,10 +144,13 @@ function Welcome({ onInvestorStart, onMerchantStart, onWalletOpen }) {
       <div className="orbit orbit-one" /><div className="orbit orbit-two" />
       <img src={coinArt} alt="عملات تنمو" />
     </div>
+    <div className="welcome-brand">
+      <img src={logo} alt="رديف" />
+    </div>
     <div className="welcome-copy">
       <span className="eyebrow"><Icon icon={Sparkle} size={15} /> داخل تطبيق الإنماء</span>
-      <h1>فكتك تموّل فكرة.<br />وفكرة تنمّي فكتك.</h1>
-      <p>حوّل فكة مشترياتك أو مبلغًا مباشرًا إلى أجزاء من صكوك منشآت محلية معتمدة.</p>
+      <h1>فكتك تموّل وتنمو.</h1>
+      <p>حوّل فكة مشترياتك تلقائيًا إلى صكوك منشآت معتمدة.</p>
     </div>
     <div className="cycle-strip">
       <span><Icon icon={Coins} /> تجمع</span><i />
@@ -152,8 +158,8 @@ function Welcome({ onInvestorStart, onMerchantStart, onWalletOpen }) {
       <span><Icon icon={TrendUp} /> تنمو</span>
     </div>
     <div className="role-actions">
-      <button type="button" className="role-button investor" onClick={onInvestorStart}><span><Icon icon={Coins} /></span><p><strong>مستثمر فرد</strong><small>نمِّ فكتك أو استثمر مباشرة</small></p><Icon icon={ArrowRight} /></button>
-      <button type="button" className="role-button merchant" onClick={onMerchantStart}><span><Icon icon={Storefront} /></span><p><strong>صاحب منشأة أو فكرة</strong><small>قدّم منشأتك للحصول على تمويل عبر الصكوك</small></p><Icon icon={ArrowRight} /></button>
+      <button type="button" className="role-button investor" onClick={onInvestorStart}><span><Icon icon={Coins} /></span><p><strong>مستثمر فرد</strong><small>استثمر فكتك تلقائيًا أو مباشرة</small></p><Icon icon={ArrowRight} /></button>
+      <button type="button" className="role-button merchant" onClick={onMerchantStart}><span><Icon icon={Storefront} /></span><p><strong>تمويل منشأة</strong><small>اطلب تمويل صكوك لتوسيع مشروعك</small></p><Icon icon={ArrowRight} /></button>
     </div>
     <small className="legal-note"><Icon icon={ShieldCheck} size={16} /> فرص مدروسة ومنشآت معتمدة من البنك</small>
   </main>;
@@ -315,7 +321,7 @@ export function App() {
   const goBack = () => merchantIndex >= 0 ? (merchantIndex === 0 ? setScreen("welcome") : setScreen(merchantFlowOrder[merchantIndex - 1])) : (currentIndex <= 0 ? setScreen("welcome") : setScreen(flowOrder[currentIndex - 1]));
   const next = () => setScreen(flowOrder[currentIndex + 1]);
   const renderScreen = () => {
-    if (screen === "welcome") return <Welcome onInvestorStart={() => setScreen("method")} onMerchantStart={() => setScreen("merchant-intro")} onWalletOpen={() => setScreen("dashboard")} />;
+    if (screen === "welcome") return <Welcome onInvestorStart={() => setScreen("method")} onMerchantStart={() => setScreen("merchant-intro")} onWalletOpen={() => setScreen("dashboard")} onAssistantOpen={() => setAssistantOpen(true)} />;
     if (screen === "method") return <MethodStep data={data} update={update} next={next} />;
     if (screen === "goal") return <GoalStep data={data} update={update} next={next} />;
     if (screen === "risk") return <RiskStep data={data} update={update} next={next} />;
@@ -332,7 +338,7 @@ export function App() {
 
   const showHeader = !["welcome", "success", "merchant-success"].includes(screen);
   const assistantContext = screen.startsWith("merchant") ? "merchant" : "investor";
-  const showAssistantLauncher = !["success", "merchant-success"].includes(screen);
+  const showAssistantLauncher = !["welcome", "success", "merchant-success"].includes(screen);
   return <div className="canvas" dir="rtl"><div className="mobile-prototype">
     {showHeader && <BrandHeader compact onBack={screen === "dashboard" ? () => setScreen("welcome") : goBack} onClose={() => setScreen("welcome")} />}
     <div className={`scroll-area ${showHeader ? "with-header" : ""} ${screen === "welcome" ? "welcome-scroll-lock" : ""}`}>{renderScreen()}</div>
