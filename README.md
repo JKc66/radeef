@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://radeef.lat" target="_blank">
-    <img src="https://img.shields.io/badge/عرض_الموقع_مباشرة-radeef.lat-0A7A5A?style=for-the-badge" alt="عرض موقع رديف مباشرة">
+    <img src="https://img.shields.io/badge/عرض_الموقع_مباشرة-radeef.lat-0A7A5A?style=for-the-badge" alt="live site">
   </a>
 </p>---
 
