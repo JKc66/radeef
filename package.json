@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "doctor": "npx react-doctor@latest"
   },
   "dependencies": {
     "@fontsource/tajawal": "^5.2.7",
@@ -18,6 +19,6 @@
     "vite": "6.4.2"
   },
   "devDependencies": {
-    "sharp": "^0.35.3"
+    "react-doctor": "^0.7.8"
   }
 }
