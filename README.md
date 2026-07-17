@@ -6,7 +6,8 @@
   <a href="https://radeef.lat" target="_blank">
     <img src="https://img.shields.io/badge/live-https://radeef.lat-0A7A5A?style=for-the-badge" alt="live site">
   </a>
-</p>---
+</p>
+---
 
 المشكلة | The Problem
 
@@ -56,7 +57,8 @@
 <p align="center">
   <img src="7.png" width="45%">
   <img src="8.png" width="45%">
-</p>---
+</p>
+---
 
 <p align="center">
   <a href="https://radeef.lat" target="_blank"><strong>جرّب رديف مباشرة</strong></a>
