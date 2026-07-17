@@ -1,0 +1,11 @@
+.success-screen { display: flex; flex-direction: column; justify-content: center; text-align: center; background: linear-gradient(160deg, #0b344b, #071d2d); color: white; }
+.success-symbol { color: #62c59d; }
+.success-logo { width: 105px; height: 54px; object-fit: contain; margin: 4px auto 14px; }
+.success-screen h1 { margin: 0 0 8px; font-size: 28px; }
+.success-screen > p { margin: 0 auto; color: #c5d6df; font-size: 14px; line-height: 1.65; max-width: 31ch; }
+.success-path { margin: 27px 0; padding: 17px 10px; display: flex; justify-content: space-around; align-items: center; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(255,255,255,.04); }
+.success-path span { display: grid; gap: 5px; place-items: center; font-size: 11px; }
+.success-path span svg { color: #ff9a81; }
+.success-path > svg { color: #617989; }
+.primary-button { width: 100%; min-height: 52px; border-radius: 14px; background: #ef765d; color: #fff; font-size: 16px; font-weight: 800; box-shadow: 0 9px 20px rgba(216,92,65,.22); white-space: nowrap; }
+.primary-button:disabled { cursor: not-allowed; opacity: .42; box-shadow: none; }
