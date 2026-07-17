@@ -19,6 +19,7 @@
     "vite": "6.4.2"
   },
   "devDependencies": {
+    "playwright": "^1.61.1",
     "react-doctor": "^0.7.8"
   }
 }
