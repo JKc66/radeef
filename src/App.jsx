@@ -28,9 +28,9 @@ import {
   Wallet,
   X,
 } from "@phosphor-icons/react";
-import walletArt from "./assets/wallet.png";
-import robotArt from "./assets/robot.png";
-import coinArt from "./assets/coin.png";
+import walletArt from "./assets/wallet.webp";
+import robotArt from "./assets/robot.webp";
+import coinArt from "./assets/coin.webp";
 
 const Icon = ({ icon: Component, size = 25, ...props }) => <Component size={size} weight="regular" {...props} />;
 
