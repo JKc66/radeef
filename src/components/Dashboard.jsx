@@ -7,26 +7,27 @@ import {
 import { opportunities, riskLabels } from "../data";
 import { Icon, PrimaryButton } from "./shared";
 
+const CHART_POINTS = [
+  { x: 0,   y: 88 },
+  { x: 60,  y: 80 },
+  { x: 120, y: 72 },
+  { x: 180, y: 60 },
+  { x: 240, y: 48 },
+  { x: 300, y: 35 },
+  { x: 340, y: 20 },
+];
+const CHART_W = 340, CHART_H = 100;
+const CHART_MONTHS = ["يناير", "سبتمبر", "نوفمبر", "اليوم"];
+
 /* ── tiny SVG growth chart ── */
 function GrowthChart() {
-  const points = [
-    { x: 0,   y: 88 },
-    { x: 60,  y: 80 },
-    { x: 120, y: 72 },
-    { x: 180, y: 60 },
-    { x: 240, y: 48 },
-    { x: 300, y: 35 },
-    { x: 340, y: 20 },
-  ];
-  const W = 340, H = 100;
-  const polyline = points.map(p => `${p.x},${p.y}`).join(" ");
-  const areaPath = `M${points[0].x},${H} ` +
-    points.map(p => `L${p.x},${p.y}`).join(" ") +
-    ` L${points[points.length-1].x},${H} Z`;
-  const months = ["يناير", "سبتمبر", "نوفمبر", "اليوم"];
+  const polyline = CHART_POINTS.map(p => `${p.x},${p.y}`).join(" ");
+  const areaPath = `M${CHART_POINTS[0].x},${CHART_H} ` +
+    CHART_POINTS.map(p => `L${p.x},${p.y}`).join(" ") +
+    ` L${CHART_POINTS[CHART_POINTS.length-1].x},${CHART_H} Z`;
   return (
     <div className="growth-chart-wrap">
-      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="growth-svg">
+      <svg viewBox={`0 0 ${CHART_W} ${CHART_H}`} preserveAspectRatio="none" className="growth-svg">
         <defs>
           <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#ef765d" stopOpacity="0.35" />
@@ -35,12 +36,13 @@ function GrowthChart() {
         </defs>
         <path d={areaPath} fill="url(#chartGrad)" />
         <polyline points={polyline} fill="none" stroke="#ef765d" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-        {points.filter((_, i) => [0, 3, 5, 6].includes(i)).map((p, i) => (
-          <circle key={i} cx={p.x} cy={p.y} r="4" fill="#ef765d" stroke="white" strokeWidth="1.5" />
-        ))}
+        {[0, 3, 5, 6].map(i => {
+          const p = CHART_POINTS[i];
+          return <circle key={i} cx={p.x} cy={p.y} r="4" fill="#ef765d" stroke="white" strokeWidth="1.5" />;
+        })}
       </svg>
       <div className="chart-x-labels">
-        {months.map(m => <span key={m}>{m}</span>)}
+        {CHART_MONTHS.map(m => <span key={m}>{m}</span>)}
       </div>
     </div>
   );

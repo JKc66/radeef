@@ -16,84 +16,74 @@ mkdirSync(videoDir, { recursive: true });
 const scenes = [
   {
     id: "01-welcome",
-    text: "مرحبًا بكم في رديف، منظومة استثمار وتمويل مجتمعي داخل تطبيق الإنماء. تبدأ الرحلة من مسارين واضحين: مستثمر فرد، أو صاحب منشأة وفكرة يبحث عن التمويل.",
+    text: "رديف تجربة ادخار واستثمار وتمويل مجتمعي داخل تطبيق الإنماء، تربط الأفراد بالمنشآت المحلية عبر صكوك معتمدة.",
     action: async () => {},
   },
   {
     id: "02-investment-method",
-    text: "نبدأ بمسار المستثمر الفرد. يستطيع العميل الاستثمار تلقائيًا من فكة المشتريات، أو إضافة مبلغ مباشر من حسابه. في هذا المثال سنختار التقريب إلى خمسة ريالات.",
+    text: "يختار المستثمر جمع فكة مشترياته تلقائيًا، أو إضافة مبلغ مباشر من حسابه.",
     action: async page => page.getByRole("button", { name: /مستثمر فرد/ }).click(),
   },
   {
     id: "03-investment-goal",
-    text: "بعدها يحدد العميل هدفه المالي، مثل سفر الصيف، والمبلغ الذي يريد الوصول إليه، والمدة المناسبة. ويعرض رديف تقديرًا مبنيًا على نمط صرفه السابق.",
+    text: "ثم يحدد هدفه ومدته، ويرى تقديرًا مبنيًا على نمط صرفه.",
     action: async page => page.getByRole("button", { name: "التالي" }).click(),
   },
   {
-    id: "04-investment-risk",
-    text: "ثم يختار مستوى المخاطرة: منخفض، أو متوسط، أو مرتفع. هذا الاختيار هو الأساس الذي يستخدمه رديف لمطابقة أموال العميل مع الصكوك المناسبة.",
-    action: async page => page.getByRole("button", { name: "التالي" }).click(),
+    id: "04-risk-and-match",
+    text: "وبحسب مستوى المخاطرة، يطابق رديف أمواله مع صكوك محلية توضح المدة والعائد المتوقع.",
+    action: async page => {
+      await page.getByRole("button", { name: "التالي" }).click();
+      await page.waitForTimeout(500);
+      await page.getByRole("button", { name: "اعرض الفرص المناسبة" }).click();
+    },
   },
   {
-    id: "05-investment-match",
-    text: "بناءً على المستوى المتوسط، يعرض رديف فرص صكوك لمنشآت محلية معتمدة، مع القطاع، والمدة، والعائد السنوي المتوقع. نختار هنا صك توسع سلسلة مقاهٍ.",
-    action: async page => page.getByRole("button", { name: "اعرض الفرص المناسبة" }).click(),
-  },
-  {
-    id: "06-investment-review",
-    text: "قبل التفعيل، يرى العميل الرحلة كاملة: تجميع الفكة، ثم مطابقتها مع الصك، ثم العائد المتوقع. كما يراجع الهدف، ومستوى المخاطرة، ومصدر الأموال.",
+    id: "05-investment-review",
+    text: "قبل التفعيل، يراجع دورة الأموال: تجميع، وتمويل، ثم عودة الأصل والعوائد.",
     action: async page => {
       await page.getByRole("button", { name: /صك توسّع سلسلة مقاهٍ/ }).click();
+      await page.waitForTimeout(350);
       await page.getByRole("button", { name: "متابعة" }).click();
     },
   },
   {
-    id: "07-investment-success",
-    text: "بعد الموافقة على الشروط، تُفعّل خطة رديف. ومن أول عملية مؤهلة، تبدأ الأموال رحلتها من التجميع، إلى تمويل المنشأة، ثم العودة بالعوائد حسب أداء الصك.",
+    id: "06-investment-success",
+    text: "وبموافقة واحدة، تبدأ الخطة من أول عملية شراء مؤهلة.",
     action: async page => {
       await page.getByRole("checkbox").check();
       await page.getByRole("button", { name: "تأكيد وتفعيل رديف" }).click();
     },
   },
   {
-    id: "08-investment-portfolio",
-    text: "وفي محفظة رديف، يتابع العميل قيمة استثماره، والعوائد، وتقدمه نحو الهدف، والصك النشط الذي يساهم من خلاله في دعم منشأة محلية.",
+    id: "07-investment-portfolio",
+    text: "وفي محفظته، يتابع المستثمر القيمة والأرباح وتقدمه نحو الهدف وأثره المحلي.",
     action: async page => page.getByRole("button", { name: "عرض محفظة رديف" }).click(),
   },
   {
-    id: "09-merchant-intro",
-    text: "ننتقل الآن إلى المسار الثاني: صاحب منشأة أو فكرة. يوضح رديف أن الطلب يمر بثلاث مراحل: تقديم البيانات، ومراجعة بنك الإنماء، ثم طرح الصكوك وجمع التمويل.",
+    id: "08-merchant-intro",
+    text: "ويستطيع صاحب المنشأة طلب تمويل بالصكوك، يبدأ بمعلومات أولية ومراجعة البنك.",
     action: async page => {
       await page.getByRole("button", { name: "إغلاق" }).click();
-      await page.getByRole("button", { name: /صاحب منشأة أو فكرة/ }).click();
+      await page.getByRole("button", { name: /تمويل منشأة/ }).click();
     },
   },
   {
-    id: "10-merchant-details-top",
-    text: "يبدأ صاحب الطلب بتحديد ما إذا كان يمثل منشأة قائمة، أو فكرة قيد التأسيس. وللمنشأة القائمة تُضاف بيانات السجل التجاري والقطاع.",
-    action: async page => page.getByRole("button", { name: "ابدأ طلب التمويل" }).click(),
-  },
-  {
-    id: "11-merchant-details-bottom",
-    text: "ثم يحدد مبلغ التمويل المطلوب، ويشرح استخدامه، مثل افتتاح فروع جديدة أو تجهيز خط إنتاج. أما المستندات التفصيلية، فيطلبها فريق رديف بعد التقييم الأولي.",
-    action: async page => page.locator(".scroll-area").evaluate(element => element.scrollTo({ top: element.scrollHeight, behavior: "instant" })),
-  },
-  {
-    id: "12-merchant-structure",
-    text: "يقدم رديف تصورًا أوليًا لهيكلة الصك: قيمة التمويل، وعدد الأجزاء، وقيمة كل جزء، والمدة، والعائد المتوقع. ويظل الاعتماد النهائي خاضعًا للدراسة الائتمانية والتنظيمية.",
-    action: async page => page.getByRole("button", { name: "متابعة" }).click(),
-  },
-  {
-    id: "13-merchant-review",
-    text: "في المراجعة النهائية، يتأكد صاحب المنشأة من بيانات الطلب. وبعد الإرسال ينتقل الطلب إلى فريق رديف، ثم إلى الدراسة، والعقود، وطرح الصكوك عند الموافقة.",
-    action: async page => page.getByRole("button", { name: "مراجعة الطلب" }).click(),
-  },
-  {
-    id: "14-merchant-success",
-    text: "تم إرسال الطلب بنجاح، ويظهر رقم مرجعي وحالة قيد المراجعة. وهكذا يربط رديف مدخرات الأفراد باحتياجات المنشآت، في دورة مالية واحدة وواضحة.",
+    id: "09-merchant-structure",
+    text: "ويقترح رديف هيكلة للمبلغ والأجزاء والمدة والعائد، خاضعة للاعتماد النهائي.",
     action: async page => {
-      await page.getByRole("checkbox").check();
-      await page.getByRole("button", { name: "إرسال طلب التمويل" }).click();
+      await page.getByRole("button", { name: "ابدأ طلب التمويل" }).click();
+      await page.waitForTimeout(500);
+      await page.getByRole("button", { name: "متابعة" }).click();
+    },
+  },
+  {
+    id: "10-assistant",
+    text: "ويبقى مساعد رديف حاضرًا لشرح الأهداف والمخاطر والتمويل، بإجابات توعوية غير استشارية.",
+    action: async page => {
+      await page.getByRole("button", { name: "فتح مساعد رديف" }).click();
+      await page.getByRole("button", { name: "كيف تُهيكل الصكوك؟" }).click();
+      await page.waitForTimeout(750);
     },
   },
 ];
@@ -110,8 +100,8 @@ console.log(`Generating Arabic narration with ${voice}...`);
 for (const scene of scenes) {
   scene.mp3 = resolve(buildDir, `${scene.id}.mp3`);
   scene.wav = resolve(buildDir, `${scene.id}.wav`);
-  run("edge-tts", ["--voice", voice, "--rate=-8%", "--text", scene.text, "--write-media", scene.mp3]);
-  run("ffmpeg", ["-y", "-loglevel", "error", "-i", scene.mp3, "-af", "adelay=650,apad=pad_dur=1.2", "-ar", "48000", "-ac", "1", scene.wav]);
+  run("edge-tts", ["--voice", voice, "--rate=+12%", "--text", scene.text, "--write-media", scene.mp3]);
+  run("ffmpeg", ["-y", "-loglevel", "error", "-i", scene.mp3, "-af", "adelay=200,apad=pad_dur=0.3", "-ar", "48000", "-ac", "1", scene.wav]);
   scene.duration = durationOf(scene.wav);
 }
 
