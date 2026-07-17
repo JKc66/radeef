@@ -50,8 +50,11 @@ for (const viewport of viewports) {
 
   await page.getByRole("button", { name: /صاحب منشأة أو فكرة/ }).click();
   await page.getByRole("button", { name: "ابدأ طلب التمويل" }).click();
-  const innerScroll = await page.locator(".scroll-area").evaluate(element => ({ clientHeight: element.clientHeight, scrollHeight: element.scrollHeight }));
-  if (innerScroll.scrollHeight <= innerScroll.clientHeight) {
+  const innerScroll = await page.locator(".scroll-area").evaluate(element => ({ clientHeight: element.clientHeight, scrollHeight: element.scrollHeight, overflowY: getComputedStyle(element).overflowY }));
+  if (innerScroll.overflowY !== "auto") {
+    throw new Error(`${viewport.name}: form area is not configured for internal scrolling: ${JSON.stringify(innerScroll)}`);
+  }
+  if (viewport.height <= 709 && innerScroll.scrollHeight <= innerScroll.clientHeight) {
     throw new Error(`${viewport.name}: long form is not scrolling inside the app: ${JSON.stringify(innerScroll)}`);
   }
 

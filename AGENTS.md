@@ -13,3 +13,5 @@ When implementing from a selected generated mock, treat that image as the source
 - The core customer flow is: choose automatic rounding or direct investment, set a goal, choose risk, match to approved local sukuk, review, activate, then land in one Radeef portfolio.
 - Explain the closed loop clearly: customer funds are pooled, matched to approved SME sukuk, then principal and returns flow back to the customer.
 - Radeef must expose both sides of the marketplace from its entry screen: an individual investor path and a "صاحب منشأة أو فكرة" path for requesting sukuk-based financing.
+- Keep a contextual Radeef AI assistant available from the product. It should answer investor questions about goals, risk, and sukuk, and merchant questions about financing review, structuring, and disbursement, with a clear non-advisory disclaimer.
+- Preserve the home wallet entry and the status-bar removal when changing adjacent navigation or home-screen UI.
