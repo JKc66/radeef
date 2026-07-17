@@ -2,12 +2,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: "/radeef/",
+  base: "/",
   optimizeDeps: {
     include: ["react", "react-dom/client"],
   },
   preview: {
-    allowedHosts: ["terminal.local", "app.jawadk.me"],
+    allowedHosts: ["terminal.local", "radeef.lat", "www.radeef.lat"],
   },
   server: {
     host: "0.0.0.0",

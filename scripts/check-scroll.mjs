@@ -37,8 +37,12 @@ for (const viewport of viewports) {
     throw new Error(`${viewport.name}: welcome screen can scroll: ${JSON.stringify(metrics)}`);
   }
   const welcomeBounds = await page.locator(".welcome").boundingBox();
+  const frameBounds = await page.locator(".mobile-prototype").boundingBox();
   const merchantChoiceBounds = await page.getByRole("button", { name: /صاحب منشأة أو فكرة/ }).boundingBox();
   const legalNoteBounds = await page.locator(".legal-note").boundingBox();
+  if (!frameBounds || frameBounds.y < 0 || frameBounds.y + frameBounds.height > viewport.height) {
+    throw new Error(`${viewport.name}: app frame extends outside the viewport`);
+  }
   if (!welcomeBounds || !merchantChoiceBounds || !legalNoteBounds || merchantChoiceBounds.y + merchantChoiceBounds.height > welcomeBounds.y + welcomeBounds.height || legalNoteBounds.y + legalNoteBounds.height > welcomeBounds.y + welcomeBounds.height) {
     throw new Error(`${viewport.name}: welcome controls are clipped outside the app frame`);
   }

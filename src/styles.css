@@ -207,4 +207,4 @@ textarea { width: 100%; min-height: 84px; padding: 11px; resize: vertical; borde
   .role-button { min-height: 47px; padding-block: 5px; }.role-button > span { width: 34px; height: 34px; }.role-button strong { font-size: 12px; }.role-button small { font-size: 9px; }
   .legal-note { font-size: 9px; }
 }
-@media (min-width: 540px) { .mobile-prototype { width: 390px; height: 844px; border-radius: 26px; border: 7px solid #071d2d; } }
+@media (min-width: 540px) { .mobile-prototype { width: 390px; height: min(100%, 844px); border-radius: 26px; border: 7px solid #071d2d; } }
